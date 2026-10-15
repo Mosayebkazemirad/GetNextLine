@@ -12,13 +12,9 @@
 
 #include "libft.h"
 
-<<<<<<< HEAD
-int ft_strncmp(char const *s1, char const *s2, size_t n)
-=======
 int	ft_strncmp(char const *s1, char const *s2, size_t n)
->>>>>>> a69c5e1 (new)
 {
-	size_t i;
+	size_t	i;
 
 	if (n == 0)
 		return (0);

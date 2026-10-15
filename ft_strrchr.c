@@ -12,13 +12,9 @@
 
 #include "libft.h"
 
-<<<<<<< HEAD
-char *ft_strrchr(char const *s, int c)
-=======
 char	*ft_strrchr(char const *s, int c)
->>>>>>> a69c5e1 (new)
 {
-	size_t i;
+	size_t	i;
 
 	i = ft_strlen(s);
 	while (i > 0)
