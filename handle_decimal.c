@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   handle_decimal.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mkazemir <mkazemir@learner.42.tech>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/19 14:02:29 by mkazemir          #+#    #+#             */
-/*   Updated: 2026/10/19 15:07:44 by mkazemir         ###   ########.fr       */
+/*                                                       :::      ::::::::    */
+/*   handle_decimal.c                                  :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/10/19 14:02:29 by username         #+#    #+#              */
+/*   Updated: 2026/10/21 11:30:19 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	handle_int(va_list args)
 	{
 		write(1, "-", 1);
 		count++;
-		num = 0u - (unsigned int)n;
+		num = 0u - (unsigned int) n;
 	}
 	else
-		num = (unsigned int)n;
+		num = (unsigned int) n;
 	count += print_number(num);
 	return (count);
 }
