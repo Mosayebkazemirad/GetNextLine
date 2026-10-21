@@ -3,10 +3,10 @@
 /*                                                       :::      ::::::::    */
 /*   print_number.c                                    :+:      :+:    :+:    */
 /*                                                   +:+ +:+         +:+      */
-/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*   By: mkazemir <mkazemir@learner.42.tech>       #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/10/19 14:21:13 by username         #+#    #+#              */
-/*   Updated: 2026/10/21 11:30:45 by username        ###   ########.fr        */
+/*   Created: 2026/10/21 12:10:26 by mkazemir         #+#    #+#              */
+/*   Updated: 2026/10/21 12:10:26 by mkazemir        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 

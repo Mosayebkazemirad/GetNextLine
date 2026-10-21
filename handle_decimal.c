@@ -3,10 +3,10 @@
 /*                                                       :::      ::::::::    */
 /*   handle_decimal.c                                  :+:      :+:    :+:    */
 /*                                                   +:+ +:+         +:+      */
-/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*   By: mkazemir <mkazemir@learner.42.tech>       #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/10/19 14:02:29 by username         #+#    #+#              */
-/*   Updated: 2026/10/21 11:30:19 by username        ###   ########.fr        */
+/*   Created: 2026/10/21 12:10:04 by mkazemir         #+#    #+#              */
+/*   Updated: 2026/10/21 12:10:04 by mkazemir        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 

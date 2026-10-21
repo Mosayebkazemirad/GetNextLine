@@ -3,10 +3,10 @@
 /*                                                       :::      ::::::::    */
 /*   handle_unsigned.c                                 :+:      :+:    :+:    */
 /*                                                   +:+ +:+         +:+      */
-/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*   By: mkazemir <mkazemir@learner.42.tech>       #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/10/21 11:30:27 by username         #+#    #+#              */
-/*   Updated: 2026/10/21 11:30:28 by username        ###   ########.fr        */
+/*   Created: 2026/10/21 12:10:15 by mkazemir         #+#    #+#              */
+/*   Updated: 2026/10/21 12:10:15 by mkazemir        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
