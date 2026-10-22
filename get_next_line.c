@@ -5,58 +5,103 @@
 /*                                                   +:+ +:+         +:+      */
 /*   By: mkazemir <mkazemir@learner.42.tech>       #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/10/22 10:23:47 by mkazemir         #+#    #+#              */
-/*   Updated: 2026/10/22 14:40:44 by mkazemir        ###   ########.fr        */
+/*   Created: 2026/10/22 16:30:00 by mkazemir         #+#    #+#              */
+/*   Updated: 2026/10/22 16:37:52 by mkazemir        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ========   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    :+:      :+:    :+:   */
+/*   By: student <student@42.fr>                     +#+  +:+       +#+        */
+/*   +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/22 16:30:00 by student           #+#    #+#             */
+/*   Updated: 2026/10/22 16:30:00 by student          ###   ========.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	init_stash(char **stash)
-{
-	if (*stash)
-		return (0);
-	*stash = malloc(1);
-	if (!*stash)
-		return (-1);
-	(*stash)[0] = '\0';
-	return (0);
-}
-
-static int	append_buffer(char **stash, char *buffer)
-{
-	char	*new_stash;
-
-	new_stash = ft_strjoin(*stash, buffer);
-	if (!new_stash)
-		return (-1);
-	free(*stash);
-	*stash = new_stash;
-	return (0);
-}
-
-int	read_buffer(int fd, char **stash)
+static char	*read_to_stash(int fd, char *stash)
 {
 	char	*buffer;
-	ssize_t	bytes_read;
+	int		bytes_read;
 
-	if (init_stash(stash) < 0)
-		return (-1);
-	buffer = malloc(BUFFER_SIZE + 1);
+	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
-		return (-1);
+		return (free(stash), NULL);
 	bytes_read = 1;
-	while (!ft_strchr(*stash, '\n') && bytes_read > 0)
+	while (bytes_read > 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < 0)
-			return (free(buffer), -1);
+		if (bytes_read == -1)
+			return (free(buffer), free(stash), NULL);
+		if (bytes_read == 0)
+			break ;
 		buffer[bytes_read] = '\0';
-		if (bytes_read > 0 && append_buffer(stash, buffer) < 0)
-			return (free(buffer), -1);
+		stash = ft_strjoin(stash, buffer);
+		if (!stash)
+			break ;
+		if (ft_strchr(buffer, '\n'))
+			break ;
 	}
-	free(buffer);
-	return (0);
+	return (free(buffer), stash);
+}
+
+static char	*extract_line(char *stash)
+{
+	char	*line;
+	size_t	i;
+
+	if (!stash || !*stash)
+		return (NULL);
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	if (stash[i] == '\n')
+		i++;
+	line = (char *) malloc(sizeof(char) * (i + 1));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+	{
+		line[i] = stash[i];
+		i++;
+	}
+	if (stash[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
+	return (line);
+}
+
+static char	*clean_stash(char *stash)
+{
+	char	*new_stash;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	if (!stash[i])
+		return (free(stash), NULL);
+	new_stash = (char *) malloc(sizeof(char) * (ft_strlen(stash) - i + 1));
+	if (!new_stash)
+		return (free(stash), NULL);
+	i++;
+	j = 0;
+	while (stash[i])
+	{
+		new_stash[j] = stash[i];
+		j++;
+		i++;
+	}
+	new_stash[j] = '\0';
+	free(stash);
+	return (new_stash);
 }
 
 char	*get_next_line(int fd)
@@ -66,15 +111,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (read_buffer(fd, &stash) < 0)
+	stash = read_to_stash(fd, stash);
+	if (!stash)
 		return (NULL);
-	if (!stash || !*stash)
-	{
-		free(stash);
-		stash = NULL;
-		return (NULL);
-	}
 	line = extract_line(stash);
-	stash = update_stash(stash);
+	stash = clean_stash(stash);
 	return (line);
 }
